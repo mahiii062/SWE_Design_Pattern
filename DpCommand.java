@@ -1,31 +1,31 @@
 /**
-// Receiver
-class Light {
-        public void turnOn() { System.out.println("Light is ON"); }
-        public void turnOff() { System.out.println("Light is OFF"); }
-}
-
-// Invoker — tightly coupled to Light
-class RemoteControl {
-        private Light light;
-
-        public RemoteControl(Light light) {
-            this.light = light;
-        }
-        // To add new behavior, you must edit this class
-        public void pressOnButton() { light.turnOn(); }
-        public void pressOffButton() { light.turnOff(); }
-}
-
-// Client
-public class Main {
-    public static void main(String[] args) {
-        Light light = new Light();
-        RemoteControl remote = new RemoteControl(light);
-        remote.pressOnButton();
-        remote.pressOffButton();
-    }
-}
+ * // Receiver
+ * class Light {
+ * public void turnOn() { System.out.println("Light is ON"); }
+ * public void turnOff() { System.out.println("Light is OFF"); }
+ * }
+ * 
+ * // Invoker — tightly coupled to Light
+ * class RemoteControl {
+ * private Light light;
+ * 
+ * public RemoteControl(Light light) {
+ * this.light = light;
+ * }
+ * // To add new behavior, you must edit this class
+ * public void pressOnButton() { light.turnOn(); }
+ * public void pressOffButton() { light.turnOff(); }
+ * }
+ * 
+ * // Client
+ * public class Main {
+ * public static void main(String[] args) {
+ * Light light = new Light();
+ * RemoteControl remote = new RemoteControl(light);
+ * remote.pressOnButton();
+ * remote.pressOffButton();
+ * }
+ * }
  */
 
 // Step : 1 >> Interface command
@@ -49,8 +49,9 @@ class Light {
 
 // Step : 3 >> Concrete commands >> each command wraps receiver action
 class LightOnCommand implements Command {
-    private Light light;
+    private Light light; // to keep light obj
 
+    // constructor to set light obj
     public LightOnCommand(Light light) {
         this.light = light;
     }
@@ -67,8 +68,9 @@ class LightOnCommand implements Command {
 }
 
 class LightOffCommand implements Command {
-    private Light light;
+    private Light light; // to keep light obj
 
+    // constructor to set light obj
     public LightOffCommand(Light light) {
         this.light = light;
     }
@@ -86,16 +88,19 @@ class LightOffCommand implements Command {
 
 // Step : 4 >> Invoker >> Who knows nothing about light, only holds command
 class RemoteControl {
-    private Command cmd;
+    private Command cmd; // to hold command obj
 
+    // method to set command obj
     public void setCommand(Command cmd) {
         this.cmd = cmd;
     }
 
+    // method to press the button
     public void pressButton() {
         cmd.execute();
     }
 
+    // method to press the undo button
     public void pressUndo() {
         cmd.undo();
     }
@@ -104,12 +109,12 @@ class RemoteControl {
 public class DpCommand {
 
     public static void main(String[] args) {
-        Light light = new Light();
+        Light light = new Light(); // Receiver
 
-        Command lightOn = new LightOnCommand(light);
+        Command lightOn = new LightOnCommand(light); // Concrete Command
         Command lightOff = new LightOffCommand(light);
 
-        RemoteControl remote = new RemoteControl();
+        RemoteControl remote = new RemoteControl(); // Invoker
 
         remote.setCommand(lightOn);
         remote.pressButton(); // Light is ON
