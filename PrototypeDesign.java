@@ -3,7 +3,7 @@ interface Prototype {
     Prototype clone();
 }
 
-// concrete class
+// concrete class implementing prototype
 class Robot implements Prototype {
     String name;
     int powerLevel;
@@ -13,7 +13,7 @@ class Robot implements Prototype {
         this.powerLevel = powerlevel;
     }
 
-    // clone method
+    @Override
     public Prototype clone() {
         return new Robot(this.name, this.powerLevel);
     }
