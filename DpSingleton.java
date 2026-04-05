@@ -1,25 +1,25 @@
 /**
-class DatabaseConnection {
-    public DatabaseConnection() {
-        System.out.println("New Database Connection Created!");
-    }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        DatabaseConnection obj1 = new DatabaseConnection();
-        DatabaseConnection obj2 = new DatabaseConnection();
-        DatabaseConnection obj3 = new DatabaseConnection();
-    }
-}
-
-Imagine like that 
-        We create 3 objects → 3 separate memory allocations
-        Different parts of program use different instances.
-Problem:
-        Data inconsistency
-        Resource waste (multiple DB connections)
-        Hard to control shared state/
+ * class DatabaseConnection {
+ * public DatabaseConnection() {
+ * System.out.println("New Database Connection Created!");
+ * }
+ * }
+ * 
+ * public class Main {
+ * public static void main(String[] args) {
+ * DatabaseConnection obj1 = new DatabaseConnection();
+ * DatabaseConnection obj2 = new DatabaseConnection();
+ * DatabaseConnection obj3 = new DatabaseConnection();
+ * }
+ * }
+ * 
+ * Imagine like that
+ * We create 3 objects → 3 separate memory allocations
+ * Different parts of program use different instances.
+ * Problem:
+ * Data inconsistency
+ * Resource waste (multiple DB connections)
+ * Hard to control shared state
  */
 
 class Singleton {
@@ -46,6 +46,8 @@ public class DpSingleton {
         Singleton obj1 = Singleton.getInstance();
         Singleton obj2 = Singleton.getInstance();
         Singleton obj3 = Singleton.getInstance();
+
+        System.out.println(obj1 == obj2); // true - same instance
+
     }
 }
-
