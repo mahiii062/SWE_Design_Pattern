@@ -1,35 +1,35 @@
 /**
-class Circle {
-    void draw() {
-        System.out.println("Drawing Circle");
-    }
-}
-
-class Rectangle {
-    void draw() {
-        System.out.println("Drawing Rectangle");
-    }
-}
-
-public class Main {
-    public static void main(String[] args) {
-
-        String type = "circle";
-
-        if(type.equals("circle")) {
-            Circle c = new Circle();
-            c.draw();
-        }
-        else if(type.equals("rectangle")) {
-            Rectangle r = new Rectangle();
-            r.draw();
-        }
-    }
-}
+ * class Circle {
+ * void draw() {
+ * System.out.println("Drawing Circle");
+ * }
+ * }
+ * 
+ * class Rectangle {
+ * void draw() {
+ * System.out.println("Drawing Rectangle");
+ * }
+ * }
+ * 
+ * public class Main {
+ * public static void main(String[] args) {
+ * 
+ * String type = "circle";
+ * 
+ * if(type.equals("circle")) {
+ * Circle c = new Circle();
+ * c.draw();
+ * }
+ * else if(type.equals("rectangle")) {
+ * Rectangle r = new Rectangle();
+ * r.draw();
+ * }
+ * }
+ * }
  */
 
 // step : 1 >> interface Shape
-interface Shape{
+interface Shape {
     void draw();
 }
 
@@ -49,12 +49,12 @@ class Rectangle implements Shape {
 // step : 3 >> simple factory class
 class ShapeFactory {
 
+    // factory method for creating objects of concrete classes based on given information
     public static Shape getShape(String type) {
 
-        if(type.equalsIgnoreCase("circle")) {
+        if (type.equalsIgnoreCase("circle")) {
             return new Circle();
-        }
-        else if(type.equalsIgnoreCase("rectangle")) {
+        } else if (type.equalsIgnoreCase("rectangle")) {
             return new Rectangle();
         }
 
@@ -64,7 +64,7 @@ class ShapeFactory {
 
 // client classs
 public class DpSimpleFactory {
-        public static void main(String[] args) {
+    public static void main(String[] args) {
 
         Shape s1 = ShapeFactory.getShape("circle");
         s1.draw();

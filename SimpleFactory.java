@@ -18,6 +18,8 @@ class Bike implements Vehicle {
  * Factory class
  */
 class VehicleFactory {
+    
+    // factory method for creating objects of concrete classes based on given information
     public static Vehicle createVehicle(String type) {
         if (type.equalsIgnoreCase("car")) {
             return new Car();
